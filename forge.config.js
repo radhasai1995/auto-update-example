@@ -31,6 +31,8 @@ module.exports = {
     {
       "name": "@electron-forge/publisher-github",
       "config": {
+        authors: "RadhaKrishna Dodla",
+        description: "Sample test",
         "repository": {
           "owner": "radhasai1995",
           "name": "auto-update-example"
