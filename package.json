@@ -13,8 +13,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "Mohit Deb",
-    "email": "mohitd@exzeo.com"
+    "name": "RadhaKrishna Dodla",
+    "email": "radhak7674@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
@@ -34,5 +34,5 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.1.0",
     "electron": "27.1.2"
   },
-  "repository": "https://github.com/debmohit/auto-update-elec-test"
+  "repository": "https://github.com/radhasai1995/auto-update-example"
 }

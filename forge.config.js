@@ -32,8 +32,8 @@ module.exports = {
       "name": "@electron-forge/publisher-github",
       "config": {
         "repository": {
-          "owner": "debmohit",
-          "name": "auto-update-elec-test"
+          "owner": "radhasai1995",
+          "name": "auto-update-example"
         }
       }
     }
