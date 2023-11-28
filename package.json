@@ -1,7 +1,7 @@
 {
   "name": "auto-update-example",
   "productName": "auto-update-example",
-  "version": "1.0.8",
+  "version": "1.0.16",
   "description": "My Electron application description",
   "main": "src/index.js",
   "scripts": {
@@ -18,7 +18,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@electron-forge/maker-snap": "^7.1.0",
     "@electron-forge/publisher-github": "^7.1.0",
+    "@reforged/maker-appimage": "^3.3.2",
     "electron-forge-maker-appimage": "^24.9.1",
     "electron-log": "^5.0.1",
     "electron-squirrel-startup": "^1.0.0",

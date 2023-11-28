@@ -5,21 +5,17 @@ module.exports = {
   rebuildConfig: {},
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
-    },
-    {
       name: '@electron-forge/maker-deb',
       config: {},
     },
     {
-      name: '@electron-forge/maker-rpm',
+      name: '@electron-forge/maker-snap',
       config: {},
     },
+    {
+      name: '@reforged/maker-appimage',
+      config: {},
+    }
   ],
   plugins: [
     {
@@ -27,7 +23,7 @@ module.exports = {
       config: {},
     },
   ],
-  "publishers": [
+  publishers: [
     {
       "name": "@electron-forge/publisher-github",
       "config": {
@@ -36,7 +32,9 @@ module.exports = {
         "repository": {
           "owner": "radhasai1995",
           "name": "auto-update-example"
-        }
+        },
+        prerelease: false,
+        draft: false,
       }
     }
   ]

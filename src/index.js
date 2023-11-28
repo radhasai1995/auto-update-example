@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const {autoUpdater} = require("electron-updater");
 const {log} = require('electron-log');
@@ -9,25 +9,29 @@ if (require('electron-squirrel-startup')) {
 }
 
 autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
+  log('Checking for update...');
 })
 autoUpdater.on('update-available', (info) => {
-  sendStatusToWindow('Update available.');
+  log('Update available.');
 })
 autoUpdater.on('update-not-available', (info) => {
-  sendStatusToWindow('Update not available.');
+  log('Update not available.');
 })
 autoUpdater.on('error', (err) => {
-  sendStatusToWindow('Error in auto-updater. ' + err);
+  log('Error in auto-updater. ' + err);
 })
 autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  sendStatusToWindow(log_message);
+  log(log_message);
 })
 autoUpdater.on('update-downloaded', (info) => {
-  sendStatusToWindow('Update downloaded');
+  log('Update downloaded');
+});
+
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
 });
 
 const createWindow = () => {
@@ -37,6 +41,8 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false,
     },
   });
 
@@ -73,4 +79,8 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 app.on('ready', function()  {
   autoUpdater.checkForUpdatesAndNotify();
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
 });
